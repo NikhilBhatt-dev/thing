@@ -4,22 +4,16 @@ import { dummyUserData } from "../assets/assets";
 import { dummyChats } from '../assets/assets'; // Adjust path as needed
 
 
-
-
-
-
 const AppContext = createContext()
 export const AppContextProvider = ({ children }) => {
     const navigate = useNavigate()
     const [user, setUser] = useState(null);
     const [selectedChat, setSelectedchat] = useState(null);
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    
     const fetchUser = async () => {
         setUser(dummyUserData)
     }
-
-
-
 
     const [chats, setChats] = useState([]);
 
