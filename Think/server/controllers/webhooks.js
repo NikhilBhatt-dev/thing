@@ -10,14 +10,14 @@ export const stripeWebhooks = async (request, response)=>{
 
     let event;
     try {
-        event = stripe.webhook.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET)
+        event = stripe.webhooks.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET)
 
     }catch (error) {
         return response.status(400).send(`webhoook Error:${error.message}`)
     }
     try {
         switch (event.type) {
-            case "payment_intent.succedded":{
+            case "payment_intent.succeeded":{
                 const paymentIntent = event.data.object;
                 const sessionList = await stripe.checkout.sessions.list({
                     payment_intent: paymentIntent.id,
@@ -26,11 +26,11 @@ export const stripeWebhooks = async (request, response)=>{
                 const session = sessionList.data[0];
                 const {transactionId, appId} = session.metadata;
 
-                if(appId === 'quickgpt'){
+                if(appId === 'Think'){
                     const transaction = await Transaction.findOne({_id: transactionId, ispaid: false})
 
                     // update credit  in user account
-                    await User.updateOne({_ID: Transaction.userId}, {$inc: {credits: transaction.credits}})
+                    await User.updateOne({_id: transaction.userId}, {$inc: {credits: transaction.credits}})
 
                     // update credit Payment status
                     transaction.isPaid = true;
@@ -39,7 +39,16 @@ export const stripeWebhooks = async (request, response)=>{
                 }else {
                     return response.json({received: true, message: "Ignored event: Invalid app"})
                 }
+                break;
+
             } 
+            default:
+                console.log("Unhandled even typw:", event.type)
+                break;
         }
+        response.json({received: true})
+    } catch (error) {
+        console.error("webhook processing error", error);
+        response.status(500).send("Internal server Error")
     }
 }
