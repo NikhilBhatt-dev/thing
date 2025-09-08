@@ -24,7 +24,11 @@ const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
     ${!isMenuOpen && 'max-md:-translate-x-full'}
     h-screen overflow-y-auto`}>
 
-      {/* Logo */}
+      
+    <div class=" text-white text-4xl font-bold py-2 px-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
+  THING
+</div>
+
       <img src={theme === 'dark' ? assets.logo_full : assets.logo_full_dark} alt="" className='w-full max-w-48 ' />
 
 
