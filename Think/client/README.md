@@ -31,7 +31,7 @@ This is the **React** frontend for **Thing**, an AI-powered assistant tool simil
   npm install
 
 3.Start the development server:
-  npm run resver
+  npm start
   
 4.Start the frontend server:
   npm run dev
