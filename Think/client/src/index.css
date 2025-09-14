@@ -1,30 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+/* Import Tailwind */
 @import "tailwindcss";
 
-*{
-   font-family: "Outfit", sans-serif;
+/* Apply custom font globally */
+* {
+  font-family: "Outfit", sans-serif;
 }
 
+/* Custom Theme Colors */
 @theme {
-  --color-primary :#E6CCFF;
+  --color-primary: #E6CCFF;
 }
 
-::-webkite-scrollbar{
+/* Hide scrollbar (corrected typo: webkit) */
+::-webkit-scrollbar {
   display: none;
 }
 
-.reset-tw :not(pre):not(code){
+/* Reset Tailwind styles except pre/code */
+.reset-tw :not(pre):not(code) {
   all: revert;
 }
 
-.loader div:nth :nth-child(2){
-  animation-delay:0.2s;
+/* Loader animation delays (fixed nth-child syntax) */
+.loader div:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
-
-.loader div:nth :nth-child(3){
-  animation-delay:0.4s;
+.loader div:nth-child(3) {
+  animation-delay: 0.4s;
 }
-
-
