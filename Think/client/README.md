@@ -25,14 +25,17 @@ This is the **React** frontend for **Thing**, an AI-powered assistant tool simil
 
 1. Clone the repository:
   git clone https://github.com/NikhilBhatt-dev/thing.git
+  
   cd thing/Think/client
 
 2. Install dependencies:
   npm install
 
 3.Start the development server:
+
   npm run server
 4.Start the frontend server:
+
   npm run dev
   
 
