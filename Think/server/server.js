@@ -24,11 +24,10 @@ app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/credit', creditRouter);
 
-// Connect DB and start server
-(async () => {
-  await connectDB();
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-})();
+// Connect DB once
+connectDB()
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.error("DB connection error:", err));
+
+
+export default app;
